@@ -1,8 +1,8 @@
-"""empty message
+"""schema before reinstall OP
 
-Revision ID: ea1483bd4146
+Revision ID: 9f2299041440
 Revises: 
-Create Date: 2019-02-05 19:47:53.421385
+Create Date: 2019-02-22 20:40:10.102488
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ea1483bd4146'
+revision = '9f2299041440'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,6 +23,8 @@ def upgrade():
     sa.Column('username', sa.String(length=64), nullable=True),
     sa.Column('email', sa.String(length=120), nullable=True),
     sa.Column('password_hash', sa.String(length=128), nullable=True),
+    sa.Column('about_me', sa.String(length=140), nullable=True),
+    sa.Column('last_seen', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_email'), 'users', ['email'], unique=True)
