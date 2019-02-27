@@ -40,7 +40,5 @@ class PostForm(FlaskForm):
     post = TextAreaField('Pet description', validators=[
         DataRequired(), Length(min=10, max=300)
     ])
-    # TODO : phone number, city, kind of pet
+    # TODO: phone number, city, kind of pet
     submit = SubmitField('Submit')
-
-
