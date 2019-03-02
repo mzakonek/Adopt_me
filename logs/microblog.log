@@ -75,3 +75,6 @@ Traceback (most recent call last):
     raise BuildError(endpoint, values, method, self)
 werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password' with values ['token']. Did you mean 'reset_password_request' instead?
 2019-02-28 14:04:02,480 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:31]
+2019-03-01 16:04:05,161 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:33]
+2019-03-02 22:36:14,611 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:35]
+2019-03-02 22:38:45,115 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:35]
