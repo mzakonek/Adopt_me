@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_bootstrap import Bootstrap
 
 
 app = Flask(__name__)
@@ -16,6 +17,7 @@ login.login_view = 'login'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, compare_type=True)
 mail = Mail(app)
+bootstrap = Bootstrap(app)
 
 if not app.debug:
     if not os.path.exists('logs'):
