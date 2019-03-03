@@ -19,6 +19,8 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['unnamed200@gmail.com']
+    LANGUAGES = ['en', 'pl']
+
 
 class ProductionConfig(Config):
     DEBUG = False
