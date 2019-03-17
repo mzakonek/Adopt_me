@@ -20,6 +20,7 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['unnamed200@gmail.com']
     LANGUAGES = ['en', 'pl']
+    MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
 
 
 class ProductionConfig(Config):
