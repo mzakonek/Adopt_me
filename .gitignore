@@ -3,4 +3,5 @@
 .flaskenv
 .idea
 venv
-logs
+.log
+/logs
