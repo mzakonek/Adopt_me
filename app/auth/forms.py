@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
-from app.models import User
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from flask_babel import _, lazy_gettext as _l
+from app.models import User
 
 
 class LoginForm(FlaskForm):
@@ -17,7 +17,8 @@ class RegistrationForm(FlaskForm):
     email = StringField(_l('Email'), validators=[DataRequired(), Email()])
     password = PasswordField(_l('Password'), validators=[DataRequired()])
     password2 = PasswordField(
-        _l('Repeat Password'), validators=[DataRequired(), EqualTo('password')])
+        _l('Repeat Password'), validators=[DataRequired(),
+                                           EqualTo('password')])
     submit = SubmitField(_l('Register'))
 
     def validate_username(self, username):
@@ -31,20 +32,6 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(_('Please use a different email address.'))
 
 
-class EditProfileForm(FlaskForm):
-    username = StringField(_l('Username'), validators=[DataRequired()])
-    about_me = TextAreaField(_l('About me'), validators=[Length(min=0, max=140)])
-    submit = SubmitField(_l('Submit'))
-
-
-class PostForm(FlaskForm):
-    post = TextAreaField(_l('Pet description'), validators=[
-        DataRequired(), Length(min=10, max=300)
-    ])
-    # TODO: phone number, city, kind of pet
-    submit = SubmitField(_l('Submit'))
-
-
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField(_l('Email'), validators=[DataRequired(), Email()])
     submit = SubmitField(_l('Request Password Reset'))
@@ -52,7 +39,7 @@ class ResetPasswordRequestForm(FlaskForm):
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField(_l('Password'), validators=[DataRequired()])
-    password2 = PasswordField(_l('Repeat password'), validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField(
+        _l('Repeat Password'), validators=[DataRequired(),
+                                           EqualTo('password')])
     submit = SubmitField(_l('Request Password Reset'))
-
-
