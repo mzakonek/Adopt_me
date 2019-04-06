@@ -21,6 +21,7 @@ class Config(object):
     ADMINS = ['unnamed200@gmail.com']
     LANGUAGES = ['en', 'pl']
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
 
 
 class ProductionConfig(Config):
