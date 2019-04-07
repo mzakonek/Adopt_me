@@ -6,6 +6,7 @@ from hashlib import md5
 from time import time
 from app import db, login
 import jwt
+import json
 from app.search import add_to_index, remove_from_index, query_index
 
 
@@ -79,6 +80,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    last_message_read_time = db.Column(db.DateTime)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     followed = db.relationship(
         'User', secondary=followers,
@@ -91,7 +93,8 @@ class User(UserMixin, db.Model):
     messages_received = db.relationship('Message',
                                         foreign_keys='Message.recipient_id',
                                         backref='recipient', lazy='dynamic')
-    last_message_read_time = db.Column(db.DateTime)
+    notifications = db.relationship('Notification', backref='user',
+                                    lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -136,6 +139,12 @@ class User(UserMixin, db.Model):
             {'reset_password': self.id, 'exp': time() + expires_in},
             current_app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
+    def add_notification(self, name, data):
+        self.notifications.filter_by(name=name).delete()
+        n = Notification(name=name, payload_json=json.dumps(data), user=self)
+        db.session.add(n)
+        return n
+
     @staticmethod
     def verify_reset_password_token(token):
         try:
@@ -164,3 +173,14 @@ class Post(SearchableMixin, db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.Float, index=True, default=time)
+    payload_json = db.Column(db.Text)
+
+    def get_data(self):
+        return json.loads(str(self.payload_json))
