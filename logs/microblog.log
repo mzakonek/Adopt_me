@@ -1,4 +1,15 @@
-2019-02-28 13:56:58,253 ERROR: Exception on /reset_password_request [POST] [in c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py:1761]
+2019-05-04 22:08:22,510 ERROR: Exception on /export_posts [GET] [in c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\connection.py", line 492, in connect
+    sock = self._connect()
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\connection.py", line 550, in _connect
+    raise err
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\connection.py", line 538, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [WinError 10061] Nie mo¿na nawi¹zaæ po³¹czenia, poniewa¿ komputer docelowy aktywnie go odmawia
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,83 +23,22 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\Dell\Documents\Adopt_me\app\routes.py", line 161, in reset_password_request
-    send_password_reset_email(user)
-  File "C:\Users\Dell\Documents\Adopt_me\app\email.py", line 19, in send_password_reset_email
-    user=user, token=token),
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\templating.py", line 134, in render_template
-    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
-    return self.get_template(template_name_or_list, parent, globals)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\environment.py", line 830, in get_template
-    return self._load_template(name, self.make_globals(globals))
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
-    template = self.loader.load(self, name, globals)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\loaders.py", line 113, in load
-    source, filename, uptodate = self.get_source(environment, name)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\templating.py", line 58, in get_source
-    return self._get_source_fast(environment, template)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\templating.py", line 86, in _get_source_fast
-    raise TemplateNotFound(template)
-jinja2.exceptions.TemplateNotFound: email/reset_password.txt
-2019-02-28 13:59:25,688 ERROR: Exception on /reset_password_request [POST] [in c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py:1761]
-Traceback (most recent call last):
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\Dell\Documents\Adopt_me\app\routes.py", line 161, in reset_password_request
-    send_password_reset_email(user)
-  File "C:\Users\Dell\Documents\Adopt_me\app\email.py", line 19, in send_password_reset_email
-    user=user, token=token),
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\templating.py", line 135, in render_template
-    context, ctx.app)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\templating.py", line 117, in _render
-    rv = template.render(context)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\Dell\Documents\Adopt_me\app\templates\email\reset_password.txt", line 5, in top-level template code
-    {{ url_for('reset_password', token=token, _external=True) }}
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\helpers.py", line 356, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\app.py", line 2061, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask\helpers.py", line 345, in url_for
-    force_external=external)
-  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\werkzeug\routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password' with values ['token']. Did you mean 'reset_password_request' instead?
-2019-02-28 14:04:02,480 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:31]
-2019-03-01 16:04:05,161 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:33]
-2019-03-02 22:36:14,611 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:35]
-2019-03-02 22:38:45,115 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:35]
-2019-03-03 20:26:36,055 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-03 21:39:57,169 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-03 21:40:07,691 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-03 21:42:25,051 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-04 13:29:30,020 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-04 13:29:43,653 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 15:44:17,299 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 15:54:44,851 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 15:54:51,088 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 17:22:05,739 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 18:06:25,374 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-17 19:38:26,617 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:38]
-2019-03-23 22:15:41,548 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:58]
-2019-03-23 22:22:30,662 INFO: Microblog startup [in C:\Users\Dell\Documents\Adopt_me\app\__init__.py:58]
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\Dell\Documents\Adopt_me\app\main\routes.py", line 213, in export_posts
+    current_user.launch_task('export_posts', _('Exporting posts...'))
+  File "C:\Users\Dell\Documents\Adopt_me\app\models.py", line 153, in launch_task
+    *args, **kwargs)
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\rq\queue.py", line 327, in enqueue
+    at_front=at_front, meta=meta
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\rq\queue.py", line 277, in enqueue_call
+    job = self.enqueue_job(job, at_front=at_front)
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\rq\queue.py", line 353, in enqueue_job
+    pipe.execute()
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\client.py", line 3514, in execute
+    self.shard_hint)
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\connection.py", line 994, in get_connection
+    connection.connect()
+  File "c:\users\dell\documents\adopt_me\venv\lib\site-packages\redis\connection.py", line 497, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to None:6379. Nie mo¿na nawi¹zaæ po³¹czenia, poniewa¿ komputer docelowy aktywnie go odmawia.
